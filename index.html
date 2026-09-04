@@ -178,6 +178,7 @@
       height: 18px;
       padding: 0;
       accent-color: var(--primary);
+      flex-shrink: 0;
     }
 
     .calculate {
@@ -387,7 +388,13 @@
           Price per <span id="priceUnitLabel">tonne</span>
           <span style="font-weight:400;color:#65716b">(optional)</span>
         </label>
-        <input id="price" type="number" min="0" step="any" placeholder="Leave blank">
+        <input
+          id="price"
+          type="number"
+          min="0"
+          step="any"
+          placeholder="Leave blank"
+        >
       </div>
 
     </div>
@@ -407,7 +414,9 @@
 
     <div class="result" id="result" aria-live="polite">
 
-      <div class="result-label">Estimated gravel needed</div>
+      <div class="result-label">
+        Estimated gravel needed
+      </div>
 
       <div class="result-main" id="mainResult"></div>
 
@@ -482,8 +491,13 @@
 
   let system = "metric";
 
-  metricBtn.addEventListener("click", () => setSystem("metric"));
-  imperialBtn.addEventListener("click", () => setSystem("imperial"));
+  metricBtn.addEventListener("click", function () {
+    setSystem("metric");
+  });
+
+  imperialBtn.addEventListener("click", function () {
+    setSystem("imperial");
+  });
 
   function setSystem(newSystem) {
     system = newSystem;
@@ -491,47 +505,36 @@
     metricBtn.classList.toggle("active", system === "metric");
     imperialBtn.classList.toggle("active", system === "imperial");
 
-    lengthUnitSelect.innerHTML = "";
-    widthUnitSelect.innerHTML = "";
-    depthUnitSelect.innerHTML = "";
-
     if (system === "metric") {
-      lengthUnitSelect.innerHTML = `
-        <option value="m">m</option>
-        <option value="cm">cm</option>
-      `;
+      lengthUnitSelect.innerHTML =
+        '<option value="m">m</option>' +
+        '<option value="cm">cm</option>';
 
-      widthUnitSelect.innerHTML = `
-        <option value="m">m</option>
-        <option value="cm">cm</option>
-      `;
+      widthUnitSelect.innerHTML =
+        '<option value="m">m</option>' +
+        '<option value="cm">cm</option>';
 
-      depthUnitSelect.innerHTML = `
-        <option value="cm">cm</option>
-        <option value="m">m</option>
-      `;
+      depthUnitSelect.innerHTML =
+        '<option value="cm">cm</option>' +
+        '<option value="m">m</option>';
 
       lengthInput.placeholder = "10";
       widthInput.placeholder = "4";
       depthInput.placeholder = "5";
 
       priceUnitLabel.textContent = "tonne";
-
     } else {
-      lengthUnitSelect.innerHTML = `
-        <option value="ft">ft</option>
-        <option value="in">in</option>
-      `;
+      lengthUnitSelect.innerHTML =
+        '<option value="ft">ft</option>' +
+        '<option value="in">in</option>';
 
-      widthUnitSelect.innerHTML = `
-        <option value="ft">ft</option>
-        <option value="in">in</option>
-      `;
+      widthUnitSelect.innerHTML =
+        '<option value="ft">ft</option>' +
+        '<option value="in">in</option>';
 
-      depthUnitSelect.innerHTML = `
-        <option value="in">in</option>
-        <option value="ft">ft</option>
-      `;
+      depthUnitSelect.innerHTML =
+        '<option value="in">in</option>' +
+        '<option value="ft">ft</option>';
 
       lengthInput.placeholder = "30";
       widthInput.placeholder = "12";
@@ -544,7 +547,7 @@
     error.style.display = "none";
   }
 
-  function metricLengthToMeters(value, unit) {
+  function metricToMeters(value, unit) {
     if (unit === "cm") {
       return value / 100;
     }
@@ -552,7 +555,7 @@
     return value;
   }
 
-  function imperialLengthToMeters(value, unit) {
+  function imperialToMeters(value, unit) {
     if (unit === "in") {
       return value * 0.0254;
     }
@@ -560,7 +563,9 @@
     return value * 0.3048;
   }
 
-  document.getElementById("calculateBtn").addEventListener("click", calculate);
+  document
+    .getElementById("calculateBtn")
+    .addEventListener("click", calculate);
 
   function calculate() {
     const length = parseFloat(lengthInput.value);
@@ -590,60 +595,71 @@
     let depthM;
 
     if (system === "metric") {
-      lengthM = metricLengthToMeters(
+      lengthM = metricToMeters(
         length,
         lengthUnitSelect.value
       );
 
-      widthM = metricLengthToMeters(
+      widthM = metricToMeters(
         width,
         widthUnitSelect.value
       );
 
-      depthM = metricLengthToMeters(
+      depthM = metricToMeters(
         depth,
         depthUnitSelect.value
       );
-
     } else {
-      lengthM = imperialLengthToMeters(
+      lengthM = imperialToMeters(
         length,
         lengthUnitSelect.value
       );
 
-      widthM = imperialLengthToMeters(
+      widthM = imperialToMeters(
         width,
         widthUnitSelect.value
       );
 
-      depthM = imperialLengthToMeters(
+      depthM = imperialToMeters(
         depth,
         depthUnitSelect.value
       );
     }
 
     const areaM2 = lengthM * widthM;
+
     let volumeM3 = areaM2 * depthM;
 
     if (extraInput.checked) {
-      volumeM3 *= 1.10;
+      volumeM3 = volumeM3 * 1.10;
     }
 
     const tonnes = volumeM3 * density;
     const kilograms = tonnes * 1000;
 
-    document.getElementById("extraRow").style.display =
-      extraInput.checked ? "flex" : "none";
-
+    const extraRow = document.getElementById("extraRow");
     const costRow = document.getElementById("costRow");
+
+    extraRow.style.display =
+      extraInput.checked ? "flex" : "none";
 
     if (system === "metric") {
 
-      document.getElementById("mainResult").textContent =
-        tonnes.toFixed(2) + " tonnes";
+      if (tonnes < 0.1) {
+        document.getElementById("mainResult").textContent =
+          Math.round(kilograms).toLocaleString() + " kg";
 
-      document.getElementById("secondaryResult").textContent =
-        "≈ " + Math.round(kilograms).toLocaleString() + " kg";
+        document.getElementById("secondaryResult").textContent =
+          tonnes.toFixed(3) + " tonnes";
+      } else {
+        document.getElementById("mainResult").textContent =
+          tonnes.toFixed(2) + " tonnes";
+
+        document.getElementById("secondaryResult").textContent =
+          "≈ " +
+          Math.round(kilograms).toLocaleString() +
+          " kg";
+      }
 
       document.getElementById("tertiaryResult").textContent =
         volumeM3.toFixed(2) + " m³";
@@ -655,7 +671,7 @@
         volumeM3.toFixed(2) + " m³";
 
       document.getElementById("weightResult").textContent =
-        tonnes.toFixed(2) +
+        tonnes.toFixed(3) +
         " tonnes (" +
         Math.round(kilograms).toLocaleString() +
         " kg)";
@@ -671,29 +687,39 @@
 
     } else {
 
-      const areaFt2 = areaM2 * 10.7639;
-      const yards3 = volumeM3 * 1.30795;
+      const areaFt2 = areaM2 * 10.7639104167;
+      const cubicYards = volumeM3 * 1.3079506193;
 
       const usTons = kilograms / 907.18474;
       const pounds = kilograms * 2.2046226218;
 
-      document.getElementById("mainResult").textContent =
-        usTons.toFixed(2) + " tons";
+      if (usTons < 0.1) {
+        document.getElementById("mainResult").textContent =
+          Math.round(pounds).toLocaleString() + " lb";
 
-      document.getElementById("secondaryResult").textContent =
-        "≈ " + Math.round(pounds).toLocaleString() + " lb";
+        document.getElementById("secondaryResult").textContent =
+          usTons.toFixed(3) + " tons";
+      } else {
+        document.getElementById("mainResult").textContent =
+          usTons.toFixed(2) + " tons";
+
+        document.getElementById("secondaryResult").textContent =
+          "≈ " +
+          Math.round(pounds).toLocaleString() +
+          " lb";
+      }
 
       document.getElementById("tertiaryResult").textContent =
-        yards3.toFixed(2) + " yd³";
+        cubicYards.toFixed(2) + " yd³";
 
       document.getElementById("areaResult").textContent =
         areaFt2.toFixed(2) + " ft²";
 
       document.getElementById("volumeResult").textContent =
-        yards3.toFixed(2) + " yd³";
+        cubicYards.toFixed(2) + " yd³";
 
       document.getElementById("weightResult").textContent =
-        usTons.toFixed(2) +
+        usTons.toFixed(3) +
         " tons (" +
         Math.round(pounds).toLocaleString() +
         " lb)";
