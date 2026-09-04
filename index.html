@@ -8,7 +8,7 @@
 
   <meta
     name="description"
-    content="Free gravel calculator. Enter the length, width and depth of your area to estimate how much gravel you need in cubic metres, tonnes, cubic yards or tons."
+    content="Free gravel calculator. Enter the length, width and depth of your area to estimate how much gravel you need in cubic metres, tonnes, kilograms, cubic yards, tons or pounds."
   >
 
   <style>
@@ -24,7 +24,6 @@
       --border: #dce4e0;
       --primary: #246b4a;
       --primary-hover: #1c593d;
-      --primary-light: #eaf4ef;
       --result-bg: #f0f8f4;
     }
 
@@ -138,15 +137,17 @@
       font-weight: 650;
     }
 
-    .input-wrap {
-      position: relative;
+    .input-with-unit {
+      display: grid;
+      grid-template-columns: 1fr 90px;
+      gap: 8px;
     }
 
     input,
     select {
       width: 100%;
       height: 50px;
-      padding: 0 46px 0 14px;
+      padding: 0 14px;
       border: 1px solid var(--border);
       border-radius: 10px;
       background: #fff;
@@ -157,24 +158,10 @@
       transition: border-color .15s, box-shadow .15s;
     }
 
-    select {
-      padding-right: 14px;
-    }
-
     input:focus,
     select:focus {
       border-color: var(--primary);
       box-shadow: 0 0 0 3px rgba(36, 107, 74, 0.12);
-    }
-
-    .unit {
-      position: absolute;
-      right: 14px;
-      top: 50%;
-      transform: translateY(-50%);
-      color: var(--muted);
-      pointer-events: none;
-      font-size: 14px;
     }
 
     .check-row {
@@ -254,6 +241,12 @@
     .result-secondary {
       font-size: 20px;
       font-weight: 650;
+      margin-bottom: 4px;
+    }
+
+    .result-tertiary {
+      font-size: 16px;
+      color: var(--muted);
       margin-bottom: 16px;
     }
 
@@ -311,6 +304,10 @@
       .field.full {
         grid-column: auto;
       }
+
+      .input-with-unit {
+        grid-template-columns: 1fr 85px;
+      }
     }
   </style>
 </head>
@@ -344,25 +341,34 @@
 
       <div class="field">
         <label for="length">Length</label>
-        <div class="input-wrap">
+        <div class="input-with-unit">
           <input id="length" type="number" min="0" step="any" placeholder="10">
-          <span class="unit" id="lengthUnit">m</span>
+          <select id="lengthUnit">
+            <option value="m">m</option>
+            <option value="cm">cm</option>
+          </select>
         </div>
       </div>
 
       <div class="field">
         <label for="width">Width</label>
-        <div class="input-wrap">
+        <div class="input-with-unit">
           <input id="width" type="number" min="0" step="any" placeholder="4">
-          <span class="unit" id="widthUnit">m</span>
+          <select id="widthUnit">
+            <option value="m">m</option>
+            <option value="cm">cm</option>
+          </select>
         </div>
       </div>
 
       <div class="field">
         <label for="depth">Gravel depth</label>
-        <div class="input-wrap">
+        <div class="input-with-unit">
           <input id="depth" type="number" min="0" step="any" placeholder="5">
-          <span class="unit" id="depthUnit">cm</span>
+          <select id="depthUnit">
+            <option value="cm">cm</option>
+            <option value="m">m</option>
+          </select>
         </div>
       </div>
 
@@ -381,9 +387,7 @@
           Price per <span id="priceUnitLabel">tonne</span>
           <span style="font-weight:400;color:#65716b">(optional)</span>
         </label>
-        <div class="input-wrap">
-          <input id="price" type="number" min="0" step="any" placeholder="Leave blank">
-        </div>
+        <input id="price" type="number" min="0" step="any" placeholder="Leave blank">
       </div>
 
     </div>
@@ -408,6 +412,8 @@
       <div class="result-main" id="mainResult"></div>
 
       <div class="result-secondary" id="secondaryResult"></div>
+
+      <div class="result-tertiary" id="tertiaryResult"></div>
 
       <div class="result-details">
 
@@ -460,13 +466,15 @@
   const lengthInput = document.getElementById("length");
   const widthInput = document.getElementById("width");
   const depthInput = document.getElementById("depth");
+
+  const lengthUnitSelect = document.getElementById("lengthUnit");
+  const widthUnitSelect = document.getElementById("widthUnit");
+  const depthUnitSelect = document.getElementById("depthUnit");
+
   const densityInput = document.getElementById("density");
   const priceInput = document.getElementById("price");
   const extraInput = document.getElementById("extra");
 
-  const lengthUnit = document.getElementById("lengthUnit");
-  const widthUnit = document.getElementById("widthUnit");
-  const depthUnit = document.getElementById("depthUnit");
   const priceUnitLabel = document.getElementById("priceUnitLabel");
 
   const result = document.getElementById("result");
@@ -483,28 +491,73 @@
     metricBtn.classList.toggle("active", system === "metric");
     imperialBtn.classList.toggle("active", system === "imperial");
 
+    lengthUnitSelect.innerHTML = "";
+    widthUnitSelect.innerHTML = "";
+    depthUnitSelect.innerHTML = "";
+
     if (system === "metric") {
-      lengthUnit.textContent = "m";
-      widthUnit.textContent = "m";
-      depthUnit.textContent = "cm";
-      priceUnitLabel.textContent = "tonne";
+      lengthUnitSelect.innerHTML = `
+        <option value="m">m</option>
+        <option value="cm">cm</option>
+      `;
+
+      widthUnitSelect.innerHTML = `
+        <option value="m">m</option>
+        <option value="cm">cm</option>
+      `;
+
+      depthUnitSelect.innerHTML = `
+        <option value="cm">cm</option>
+        <option value="m">m</option>
+      `;
 
       lengthInput.placeholder = "10";
       widthInput.placeholder = "4";
       depthInput.placeholder = "5";
+
+      priceUnitLabel.textContent = "tonne";
+
     } else {
-      lengthUnit.textContent = "ft";
-      widthUnit.textContent = "ft";
-      depthUnit.textContent = "in";
-      priceUnitLabel.textContent = "ton";
+      lengthUnitSelect.innerHTML = `
+        <option value="ft">ft</option>
+        <option value="in">in</option>
+      `;
+
+      widthUnitSelect.innerHTML = `
+        <option value="ft">ft</option>
+        <option value="in">in</option>
+      `;
+
+      depthUnitSelect.innerHTML = `
+        <option value="in">in</option>
+        <option value="ft">ft</option>
+      `;
 
       lengthInput.placeholder = "30";
       widthInput.placeholder = "12";
       depthInput.placeholder = "2";
+
+      priceUnitLabel.textContent = "ton";
     }
 
     result.style.display = "none";
     error.style.display = "none";
+  }
+
+  function metricLengthToMeters(value, unit) {
+    if (unit === "cm") {
+      return value / 100;
+    }
+
+    return value;
+  }
+
+  function imperialLengthToMeters(value, unit) {
+    if (unit === "in") {
+      return value * 0.0254;
+    }
+
+    return value * 0.3048;
   }
 
   document.getElementById("calculateBtn").addEventListener("click", calculate);
@@ -513,6 +566,7 @@
     const length = parseFloat(lengthInput.value);
     const width = parseFloat(widthInput.value);
     const depth = parseFloat(depthInput.value);
+
     const density = parseFloat(densityInput.value);
     const price = parseFloat(priceInput.value);
 
@@ -536,13 +590,36 @@
     let depthM;
 
     if (system === "metric") {
-      lengthM = length;
-      widthM = width;
-      depthM = depth / 100;
+      lengthM = metricLengthToMeters(
+        length,
+        lengthUnitSelect.value
+      );
+
+      widthM = metricLengthToMeters(
+        width,
+        widthUnitSelect.value
+      );
+
+      depthM = metricLengthToMeters(
+        depth,
+        depthUnitSelect.value
+      );
+
     } else {
-      lengthM = length * 0.3048;
-      widthM = width * 0.3048;
-      depthM = depth * 0.0254;
+      lengthM = imperialLengthToMeters(
+        length,
+        lengthUnitSelect.value
+      );
+
+      widthM = imperialLengthToMeters(
+        width,
+        widthUnitSelect.value
+      );
+
+      depthM = imperialLengthToMeters(
+        depth,
+        depthUnitSelect.value
+      );
     }
 
     const areaM2 = lengthM * widthM;
@@ -553,6 +630,7 @@
     }
 
     const tonnes = volumeM3 * density;
+    const kilograms = tonnes * 1000;
 
     document.getElementById("extraRow").style.display =
       extraInput.checked ? "flex" : "none";
@@ -565,6 +643,9 @@
         tonnes.toFixed(2) + " tonnes";
 
       document.getElementById("secondaryResult").textContent =
+        "≈ " + Math.round(kilograms).toLocaleString() + " kg";
+
+      document.getElementById("tertiaryResult").textContent =
         volumeM3.toFixed(2) + " m³";
 
       document.getElementById("areaResult").textContent =
@@ -574,11 +655,15 @@
         volumeM3.toFixed(2) + " m³";
 
       document.getElementById("weightResult").textContent =
-        tonnes.toFixed(2) + " tonnes";
+        tonnes.toFixed(2) +
+        " tonnes (" +
+        Math.round(kilograms).toLocaleString() +
+        " kg)";
 
       if (Number.isFinite(price) && price >= 0) {
         document.getElementById("costResult").textContent =
           (tonnes * price).toFixed(2);
+
         costRow.style.display = "flex";
       } else {
         costRow.style.display = "none";
@@ -589,13 +674,16 @@
       const areaFt2 = areaM2 * 10.7639;
       const yards3 = volumeM3 * 1.30795;
 
-      const kilograms = tonnes * 1000;
       const usTons = kilograms / 907.18474;
+      const pounds = kilograms * 2.2046226218;
 
       document.getElementById("mainResult").textContent =
         usTons.toFixed(2) + " tons";
 
       document.getElementById("secondaryResult").textContent =
+        "≈ " + Math.round(pounds).toLocaleString() + " lb";
+
+      document.getElementById("tertiaryResult").textContent =
         yards3.toFixed(2) + " yd³";
 
       document.getElementById("areaResult").textContent =
@@ -605,11 +693,15 @@
         yards3.toFixed(2) + " yd³";
 
       document.getElementById("weightResult").textContent =
-        usTons.toFixed(2) + " tons";
+        usTons.toFixed(2) +
+        " tons (" +
+        Math.round(pounds).toLocaleString() +
+        " lb)";
 
       if (Number.isFinite(price) && price >= 0) {
         document.getElementById("costResult").textContent =
           (usTons * price).toFixed(2);
+
         costRow.style.display = "flex";
       } else {
         costRow.style.display = "none";
