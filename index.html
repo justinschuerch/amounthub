@@ -8,8 +8,22 @@
 
   <meta
     name="description"
-    content="Free gravel calculator. Enter the length, width and depth of your area to estimate how much gravel you need in cubic metres, tonnes, kilograms, cubic yards, tons or pounds."
+    content="Use our free gravel calculator to estimate how much gravel you need for a driveway, garden path, patio or landscaping project. Calculate gravel in tonnes, kilograms, cubic metres, tons and pounds."
   >
+
+  <meta name="robots" content="index, follow">
+
+  <link rel="canonical" href="https://amounthub.com/">
+
+  <meta property="og:title" content="Gravel Calculator – How Much Gravel Do I Need?">
+  <meta
+    property="og:description"
+    content="Quickly calculate how much gravel you need using length, width and depth. Supports metric and imperial measurements."
+  >
+  <meta property="og:url" content="https://amounthub.com/">
+  <meta property="og:type" content="website">
+
+  <meta name="theme-color" content="#246b4a">
 
   <style>
     * {
@@ -34,7 +48,7 @@
         Roboto, Arial, sans-serif;
       background: var(--bg);
       color: var(--text);
-      line-height: 1.5;
+      line-height: 1.6;
     }
 
     header {
@@ -279,6 +293,95 @@
       text-align: center;
     }
 
+    .content {
+      margin-top: 54px;
+    }
+
+    .content section {
+      margin-bottom: 42px;
+    }
+
+    .content h2 {
+      font-size: 27px;
+      line-height: 1.25;
+      letter-spacing: -0.6px;
+      margin: 0 0 14px;
+    }
+
+    .content h3 {
+      font-size: 20px;
+      margin: 26px 0 8px;
+    }
+
+    .content p {
+      margin: 0 0 16px;
+      color: #36423c;
+    }
+
+    .content ul {
+      padding-left: 22px;
+      color: #36423c;
+    }
+
+    .content li {
+      margin-bottom: 8px;
+    }
+
+    .example-box {
+      background: #ffffff;
+      border: 1px solid var(--border);
+      border-left: 4px solid var(--primary);
+      border-radius: 10px;
+      padding: 20px;
+      margin-top: 20px;
+    }
+
+    .example-box p:last-child {
+      margin-bottom: 0;
+    }
+
+    .depth-table {
+      width: 100%;
+      border-collapse: collapse;
+      background: white;
+      border: 1px solid var(--border);
+      margin-top: 18px;
+    }
+
+    .depth-table th,
+    .depth-table td {
+      padding: 13px 14px;
+      text-align: left;
+      border-bottom: 1px solid var(--border);
+    }
+
+    .depth-table th {
+      background: #eef2f0;
+      font-size: 14px;
+    }
+
+    .depth-table tr:last-child td {
+      border-bottom: 0;
+    }
+
+    .faq-item {
+      padding: 20px 0;
+      border-bottom: 1px solid var(--border);
+    }
+
+    .faq-item:first-of-type {
+      border-top: 1px solid var(--border);
+    }
+
+    .faq-item h3 {
+      margin: 0 0 8px;
+      font-size: 18px;
+    }
+
+    .faq-item p {
+      margin: 0;
+    }
+
     footer {
       text-align: center;
       padding: 30px 20px;
@@ -308,6 +411,18 @@
 
       .input-with-unit {
         grid-template-columns: 1fr 85px;
+      }
+
+      .content {
+        margin-top: 42px;
+      }
+
+      .content h2 {
+        font-size: 24px;
+      }
+
+      .depth-table {
+        font-size: 14px;
       }
     }
   </style>
@@ -461,6 +576,227 @@
     </div>
 
   </section>
+
+  <article class="content">
+
+    <section>
+      <h2>How much gravel do I need?</h2>
+
+      <p>
+        The amount of gravel you need depends on three main measurements:
+        the length of the area, its width and the depth of the gravel layer.
+        AmountHub's gravel calculator uses these measurements to estimate the
+        total volume and approximate weight of gravel required for your project.
+      </p>
+
+      <p>
+        Enter the dimensions of your driveway, garden path, patio or landscaping
+        area and choose either metric or imperial units. The calculator converts
+        the measurements automatically and estimates the result in cubic metres
+        and tonnes, or cubic yards and US tons.
+      </p>
+
+      <p>
+        For smaller projects, the result is also displayed in kilograms or
+        pounds so that you do not have to convert a small fraction of a tonne
+        yourself.
+      </p>
+    </section>
+
+    <section>
+      <h2>How the gravel calculator works</h2>
+
+      <p>
+        Gravel quantity is calculated by first finding the volume of the area.
+        For a rectangular area, the basic calculation is:
+      </p>
+
+      <p>
+        <strong>Length × Width × Depth = Gravel Volume</strong>
+      </p>
+
+      <p>
+        The volume is then multiplied by an estimated density for the selected
+        gravel type. Different materials have different densities, so pea
+        gravel, crushed stone and river rock may produce slightly different
+        weight estimates even when the volume is the same.
+      </p>
+
+      <p>
+        By default, the calculator adds 10% extra material. This allowance can
+        help account for uneven ground, settling, compaction and small losses
+        during delivery or installation. You can disable the extra allowance
+        if you prefer to calculate the exact theoretical quantity.
+      </p>
+    </section>
+
+    <section>
+      <h2>Gravel calculation example</h2>
+
+      <div class="example-box">
+        <p>
+          Imagine you are creating a garden path that is
+          <strong>10 metres long</strong>,
+          <strong>2 metres wide</strong> and
+          <strong>5 centimetres deep</strong>.
+        </p>
+
+        <p>
+          The area is 20 m² and the gravel volume before adding extra material
+          is approximately 1 m³.
+        </p>
+
+        <p>
+          Using a general gravel density of roughly 1.7 tonnes per cubic metre,
+          the project would require around 1.7 tonnes of gravel before any
+          additional allowance.
+        </p>
+
+        <p>
+          With a 10% allowance included, the estimated requirement becomes
+          approximately <strong>1.87 tonnes</strong>.
+        </p>
+      </div>
+    </section>
+
+    <section>
+      <h2>How deep should gravel be?</h2>
+
+      <p>
+        The correct gravel depth depends on how the area will be used.
+        Decorative gravel normally requires a much shallower layer than a
+        driveway or structural base.
+      </p>
+
+      <table class="depth-table">
+        <thead>
+          <tr>
+            <th>Project</th>
+            <th>Typical gravel depth</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>Decorative garden gravel</td>
+            <td>3–5 cm</td>
+          </tr>
+          <tr>
+            <td>Garden path</td>
+            <td>About 5 cm</td>
+          </tr>
+          <tr>
+            <td>Patio or seating area</td>
+            <td>About 5–8 cm</td>
+          </tr>
+          <tr>
+            <td>Driveway surface layer</td>
+            <td>About 5–10 cm</td>
+          </tr>
+        </tbody>
+      </table>
+
+      <p>
+        These figures are general planning estimates. Projects that carry
+        vehicles or require drainage and structural support may need additional
+        compacted base layers underneath the visible gravel.
+      </p>
+    </section>
+
+    <section>
+      <h2>How much does a cubic metre of gravel weigh?</h2>
+
+      <p>
+        Gravel does not have one exact weight because the density changes
+        depending on stone size, material, moisture and how tightly it is
+        compacted.
+      </p>
+
+      <p>
+        As a general estimate, many common gravel types weigh around
+        <strong>1.6 to 1.8 tonnes per cubic metre</strong>. Our calculator uses
+        a different estimated density depending on the gravel type you select.
+      </p>
+
+      <ul>
+        <li>General gravel: approximately 1.70 tonnes per m³</li>
+        <li>Pea gravel: approximately 1.60 tonnes per m³</li>
+        <li>Crushed stone: approximately 1.75 tonnes per m³</li>
+        <li>River rock: approximately 1.65 tonnes per m³</li>
+      </ul>
+
+      <p>
+        If your supplier provides a specific density for the product you plan
+        to purchase, their figure should always be considered more accurate for
+        that particular material.
+      </p>
+    </section>
+
+    <section>
+      <h2>Should I order extra gravel?</h2>
+
+      <p>
+        Ordering slightly more gravel than the mathematical minimum can be
+        useful. Ground is rarely perfectly level, measurements may not be
+        exact, and gravel can settle or compact after installation.
+      </p>
+
+      <p>
+        A 10% allowance is a simple general estimate, which is why it is
+        enabled by default in the calculator. For a very precisely prepared
+        area you may need less extra material, while irregular or sloped ground
+        could require more.
+      </p>
+    </section>
+
+    <section>
+      <h2>Frequently asked questions</h2>
+
+      <div class="faq-item">
+        <h3>Can I use this calculator for a driveway?</h3>
+        <p>
+          Yes. Enter the driveway length, width and planned gravel depth.
+          Remember that driveways may also require compacted foundation layers
+          underneath the final gravel surface.
+        </p>
+      </div>
+
+      <div class="faq-item">
+        <h3>Can I calculate gravel in centimetres?</h3>
+        <p>
+          Yes. Metric length and width measurements can be entered in metres or
+          centimetres, while gravel depth can also be entered in centimetres.
+        </p>
+      </div>
+
+      <div class="faq-item">
+        <h3>Does the calculator support feet and inches?</h3>
+        <p>
+          Yes. Switch to Imperial to enter measurements in feet or inches.
+          Results are displayed in cubic yards, US tons and pounds.
+        </p>
+      </div>
+
+      <div class="faq-item">
+        <h3>Why does gravel weight vary?</h3>
+        <p>
+          Different stone types have different densities. Moisture, stone size
+          and compaction can also change the actual weight of a given volume of
+          gravel.
+        </p>
+      </div>
+
+      <div class="faq-item">
+        <h3>Can I estimate the cost of gravel?</h3>
+        <p>
+          Yes. Enter the price per tonne or US ton in the optional price field
+          and the calculator will estimate the material cost based on the
+          calculated weight.
+        </p>
+      </div>
+
+    </section>
+
+  </article>
 
 </main>
 
