@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta name="google-adsense-account" content="ca-pub-8411370578227270">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-8411370578227270" crossorigin="anonymous"></script>
+  <title>Concrete Calculator – How Much Concrete Do I Need? | AmountHub</title>
+  <meta name="description" content="Use our free concrete calculator to estimate the concrete volume needed for slabs, patios, paths and other rectangular projects in cubic metres or cubic yards.">
+  <meta name="robots" content="index, follow">
+  <link rel="canonical" href="https://amounthub.com/concrete-calculator/">
+  <meta property="og:title" content="Concrete Calculator – How Much Concrete Do I Need?">
+  <meta property="og:description" content="Calculate concrete volume for a rectangular slab using metric or imperial measurements.">
+  <meta property="og:url" content="https://amounthub.com/concrete-calculator/">
+  <meta property="og:type" content="website">
+  <meta name="theme-color" content="#246b4a">
+  <link rel="stylesheet" href="/assets/site.css">
+</head>
+<body>
+<header><div class="header-inner"><div class="brand"><a href="/">Amount<span>Hub</span></a></div><nav aria-label="Main navigation"><a href="/calculators/">Calculators</a><a href="/about/">About</a></nav></div></header>
+<main>
+  <section class="intro"><h1>Concrete Calculator</h1><p>Estimate how much concrete you need for a slab, patio, path or other rectangular project.</p></section>
+  <section class="calculator" aria-label="Concrete calculator">
+    <div class="unit-toggle"><button id="metricBtn" class="active" type="button">Metric</button><button id="imperialBtn" type="button">Imperial</button></div>
+    <div class="field-grid">
+      <div class="field"><label for="length">Length</label><div class="input-with-unit"><input id="length" type="number" min="0" step="any" placeholder="5"><select id="lengthUnit"><option value="m">m</option><option value="cm">cm</option></select></div></div>
+      <div class="field"><label for="width">Width</label><div class="input-with-unit"><input id="width" type="number" min="0" step="any" placeholder="3"><select id="widthUnit"><option value="m">m</option><option value="cm">cm</option></select></div></div>
+      <div class="field"><label for="depth">Thickness</label><div class="input-with-unit"><input id="depth" type="number" min="0" step="any" placeholder="10"><select id="depthUnit"><option value="cm">cm</option><option value="m">m</option></select></div></div>
+      <div class="field"><label for="waste">Extra allowance (%)</label><input id="waste" type="number" min="0" step="any" value="10"></div>
+      <div class="field full"><label for="price">Price per <span id="priceUnitLabel">m³</span> <span style="font-weight:400;color:#65716b">(optional)</span></label><input id="price" type="number" min="0" step="any" placeholder="Leave blank"></div>
+    </div>
+    <button class="calculate" id="calculateBtn" type="button">Calculate concrete</button>
+    <div class="error" id="error">Please enter a length, width and thickness greater than zero.</div>
+    <div class="result" id="result" aria-live="polite">
+      <div class="result-label">Estimated concrete needed</div>
+      <div class="result-main" id="mainResult"></div>
+      <div class="result-secondary" id="secondaryResult"></div>
+      <div class="result-details">
+        <div class="detail"><span>Area</span><strong id="areaResult"></strong></div>
+        <div class="detail"><span>Base volume</span><strong id="volumeResult"></strong></div>
+        <div class="detail"><span>Extra allowance</span><strong id="wasteResult"></strong></div>
+        <div class="detail" id="costRow" style="display:none"><span>Estimated cost</span><strong id="costResult"></strong></div>
+      </div>
+    </div>
+    <div class="note">This calculator provides a planning estimate. Actual concrete requirements can vary with formwork, ground conditions and site waste.</div>
+  </section>
+  <div class="related"><h2>Related calculators</h2><div class="related-links"><a href="/">Gravel Calculator</a><a href="/calculators/">View all calculators →</a></div></div>
+  <article class="content">
+    <section><h2>How much concrete do I need?</h2><p>For a rectangular slab, multiply the length by the width by the thickness to find the concrete volume. This calculator converts your measurements into cubic metres or cubic yards and can add a percentage for waste and small variations.</p><p>The basic formula is <strong>Length × Width × Thickness = Concrete Volume</strong>.</p></section>
+    <section><h2>Should I order extra concrete?</h2><p>A small allowance is commonly useful because excavations and formwork are rarely perfectly exact. The calculator starts with a 10% allowance, but you can change it to suit your project.</p></section>
+    <section><h2>Concrete calculation example</h2><div class="example-box"><p>A slab measuring <strong>5 m × 3 m × 10 cm</strong> has a base volume of <strong>1.5 m³</strong>.</p><p>With a 10% allowance, the estimated order quantity is <strong>1.65 m³</strong>.</p></div></section>
+    <section><h2>Frequently asked questions</h2><div class="faq-item"><h3>Can I use this for a patio or shed base?</h3><p>Yes. It works for rectangular slabs such as patios, shed bases, paths and similar projects.</p></div><div class="faq-item"><h3>Does it support feet and inches?</h3><p>Yes. Switch to Imperial to enter feet or inches and receive results in cubic yards and cubic feet.</p></div><div class="faq-item"><h3>Can I estimate the concrete cost?</h3><p>Yes. Enter a price per cubic metre or cubic yard and the calculator will estimate the material cost.</p></div></section>
+  </article>
+</main>
+<footer><div class="footer-links"><a href="/privacy">Privacy Policy</a><a href="/about/">About</a><a href="/calculators/">Calculators</a></div><div>© AmountHub</div></footer>
+<script src="/assets/concrete.js"></script>
+</body>
+</html>

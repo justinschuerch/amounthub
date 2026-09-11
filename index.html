@@ -1,1088 +1,128 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-   <meta name="google-adsense-account" content="ca-pub-8411370578227270">
-   <meta charset="UTF-8">
-   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  
-  <script async
-    src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-8411370578227270"
-    crossorigin="anonymous"></script>
-
+  <meta name="google-adsense-account" content="ca-pub-8411370578227270">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-8411370578227270" crossorigin="anonymous"></script>
   <title>Gravel Calculator – How Much Gravel Do I Need? | AmountHub</title>
-
-  <meta
-    name="description"
-    content="Use our free gravel calculator to estimate how much gravel you need for a driveway, garden path, patio or landscaping project. Calculate gravel in tonnes, kilograms, cubic metres, tons and pounds."
-  >
-
+  <meta name="description" content="Use our free gravel calculator to estimate how much gravel you need for a driveway, garden path, patio or landscaping project. Calculate gravel in tonnes, kilograms, cubic metres, tons and pounds.">
   <meta name="robots" content="index, follow">
-
   <link rel="canonical" href="https://amounthub.com/">
-
   <meta property="og:title" content="Gravel Calculator – How Much Gravel Do I Need?">
-  <meta
-    property="og:description"
-    content="Quickly calculate how much gravel you need using length, width and depth. Supports metric and imperial measurements."
-  >
+  <meta property="og:description" content="Quickly calculate how much gravel you need using length, width and depth. Supports metric and imperial measurements.">
   <meta property="og:url" content="https://amounthub.com/">
   <meta property="og:type" content="website">
-
   <meta name="theme-color" content="#246b4a">
-
-  <style>
-    * {
-      box-sizing: border-box;
-    }
-
-    :root {
-      --bg: #f5f7f6;
-      --card: #ffffff;
-      --text: #17201c;
-      --muted: #65716b;
-      --border: #dce4e0;
-      --primary: #246b4a;
-      --primary-hover: #1c593d;
-      --result-bg: #f0f8f4;
-    }
-
-    body {
-      margin: 0;
-      font-family:
-        Inter, -apple-system, BlinkMacSystemFont, "Segoe UI",
-        Roboto, Arial, sans-serif;
-      background: var(--bg);
-      color: var(--text);
-      line-height: 1.6;
-    }
-
-    header {
-      background: #ffffff;
-      border-bottom: 1px solid var(--border);
-    }
-
-    .header-inner {
-      max-width: 1000px;
-      margin: 0 auto;
-      padding: 18px 20px;
-    }
-
-    .brand {
-      font-size: 22px;
-      font-weight: 750;
-      letter-spacing: -0.5px;
-    }
-
-    .brand span {
-      color: var(--primary);
-    }
-
-    main {
-      width: min(100% - 32px, 760px);
-      margin: 48px auto 70px;
-    }
-
-    .intro {
-      text-align: center;
-      margin-bottom: 28px;
-    }
-
-    h1 {
-      font-size: clamp(32px, 6vw, 46px);
-      line-height: 1.08;
-      letter-spacing: -1.5px;
-      margin: 0 0 12px;
-    }
-
-    .intro p {
-      margin: 0 auto;
-      max-width: 600px;
-      color: var(--muted);
-      font-size: 17px;
-    }
-
-    .calculator {
-      background: var(--card);
-      border: 1px solid var(--border);
-      border-radius: 18px;
-      padding: 26px;
-      box-shadow: 0 8px 30px rgba(20, 40, 30, 0.05);
-    }
-
-    .unit-toggle {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      background: #eef2f0;
-      border-radius: 10px;
-      padding: 4px;
-      margin-bottom: 26px;
-    }
-
-    .unit-toggle button {
-      border: 0;
-      background: transparent;
-      padding: 11px;
-      border-radius: 8px;
-      cursor: pointer;
-      font-size: 15px;
-      font-weight: 650;
-      color: var(--muted);
-    }
-
-    .unit-toggle button.active {
-      background: white;
-      color: var(--text);
-      box-shadow: 0 1px 4px rgba(0,0,0,0.08);
-    }
-
-    .field-grid {
-      display: grid;
-      grid-template-columns: repeat(2, 1fr);
-      gap: 18px;
-    }
-
-    .field {
-      min-width: 0;
-    }
-
-    .field.full {
-      grid-column: 1 / -1;
-    }
-
-    label {
-      display: block;
-      margin-bottom: 7px;
-      font-size: 14px;
-      font-weight: 650;
-    }
-
-    .input-with-unit {
-      display: grid;
-      grid-template-columns: 1fr 90px;
-      gap: 8px;
-    }
-
-    input,
-    select {
-      width: 100%;
-      height: 50px;
-      padding: 0 14px;
-      border: 1px solid var(--border);
-      border-radius: 10px;
-      background: #fff;
-      color: var(--text);
-      font: inherit;
-      font-size: 16px;
-      outline: none;
-      transition: border-color .15s, box-shadow .15s;
-    }
-
-    input:focus,
-    select:focus {
-      border-color: var(--primary);
-      box-shadow: 0 0 0 3px rgba(36, 107, 74, 0.12);
-    }
-
-    .check-row {
-      display: flex;
-      align-items: center;
-      gap: 10px;
-      margin-top: 20px;
-      color: var(--muted);
-      font-size: 14px;
-    }
-
-    .check-row input {
-      width: 18px;
-      height: 18px;
-      padding: 0;
-      accent-color: var(--primary);
-      flex-shrink: 0;
-    }
-
-    .calculate {
-      width: 100%;
-      border: 0;
-      border-radius: 11px;
-      padding: 15px 20px;
-      margin-top: 24px;
-      background: var(--primary);
-      color: white;
-      font-size: 17px;
-      font-weight: 700;
-      cursor: pointer;
-      transition: background .15s, transform .05s;
-    }
-
-    .calculate:hover {
-      background: var(--primary-hover);
-    }
-
-    .calculate:active {
-      transform: translateY(1px);
-    }
-
-    .error {
-      display: none;
-      margin-top: 16px;
-      padding: 12px 14px;
-      border-radius: 9px;
-      background: #fff1f1;
-      color: #9b2929;
-      font-size: 14px;
-    }
-
-    .result {
-      display: none;
-      margin-top: 24px;
-      background: var(--result-bg);
-      border: 1px solid #cfe4d8;
-      border-radius: 14px;
-      padding: 24px;
-      text-align: center;
-    }
-
-    .result-label {
-      font-size: 13px;
-      font-weight: 750;
-      color: var(--primary);
-      text-transform: uppercase;
-      letter-spacing: 1px;
-    }
-
-    .result-main {
-      margin: 7px 0 2px;
-      font-size: clamp(38px, 9vw, 54px);
-      line-height: 1;
-      font-weight: 800;
-      letter-spacing: -2px;
-    }
-
-    .result-secondary {
-      font-size: 20px;
-      font-weight: 650;
-      margin-bottom: 4px;
-    }
-
-    .result-tertiary {
-      font-size: 16px;
-      color: var(--muted);
-      margin-bottom: 16px;
-    }
-
-    .result-details {
-      border-top: 1px solid #cee2d7;
-      padding-top: 15px;
-      display: grid;
-      gap: 7px;
-      text-align: left;
-      color: var(--muted);
-      font-size: 14px;
-    }
-
-    .detail {
-      display: flex;
-      justify-content: space-between;
-      gap: 20px;
-    }
-
-    .detail strong {
-      color: var(--text);
-      text-align: right;
-    }
-
-    .note {
-      margin-top: 18px;
-      color: var(--muted);
-      font-size: 13px;
-      text-align: center;
-    }
-
-    .content {
-      margin-top: 54px;
-    }
-
-    .content section {
-      margin-bottom: 42px;
-    }
-
-    .content h2 {
-      font-size: 27px;
-      line-height: 1.25;
-      letter-spacing: -0.6px;
-      margin: 0 0 14px;
-    }
-
-    .content h3 {
-      font-size: 20px;
-      margin: 26px 0 8px;
-    }
-
-    .content p {
-      margin: 0 0 16px;
-      color: #36423c;
-    }
-
-    .content ul {
-      padding-left: 22px;
-      color: #36423c;
-    }
-
-    .content li {
-      margin-bottom: 8px;
-    }
-
-    .example-box {
-      background: #ffffff;
-      border: 1px solid var(--border);
-      border-left: 4px solid var(--primary);
-      border-radius: 10px;
-      padding: 20px;
-      margin-top: 20px;
-    }
-
-    .example-box p:last-child {
-      margin-bottom: 0;
-    }
-
-    .depth-table {
-      width: 100%;
-      border-collapse: collapse;
-      background: white;
-      border: 1px solid var(--border);
-      margin-top: 18px;
-    }
-
-    .depth-table th,
-    .depth-table td {
-      padding: 13px 14px;
-      text-align: left;
-      border-bottom: 1px solid var(--border);
-    }
-
-    .depth-table th {
-      background: #eef2f0;
-      font-size: 14px;
-    }
-
-    .depth-table tr:last-child td {
-      border-bottom: 0;
-    }
-
-    .faq-item {
-      padding: 20px 0;
-      border-bottom: 1px solid var(--border);
-    }
-
-    .faq-item:first-of-type {
-      border-top: 1px solid var(--border);
-    }
-
-    .faq-item h3 {
-      margin: 0 0 8px;
-      font-size: 18px;
-    }
-
-    .faq-item p {
-      margin: 0;
-    }
-
-    footer {
-      text-align: center;
-      padding: 30px 20px;
-      color: var(--muted);
-      font-size: 13px;
-    }
-
-    @media (max-width: 560px) {
-      main {
-        width: min(100% - 20px, 760px);
-        margin-top: 30px;
-      }
-
-      .calculator {
-        padding: 18px;
-        border-radius: 14px;
-      }
-
-      .field-grid {
-        grid-template-columns: 1fr;
-        gap: 15px;
-      }
-
-      .field.full {
-        grid-column: auto;
-      }
-
-      .input-with-unit {
-        grid-template-columns: 1fr 85px;
-      }
-
-      .content {
-        margin-top: 42px;
-      }
-
-      .content h2 {
-        font-size: 24px;
-      }
-
-      .depth-table {
-        font-size: 14px;
-      }
-    }
-  </style>
+  <link rel="stylesheet" href="/assets/site.css">
 </head>
-
 <body>
-
 <header>
   <div class="header-inner">
-    <div class="brand">Amount<span>Hub</span></div>
+    <div class="brand"><a href="/">Amount<span>Hub</span></a></div>
+    <nav aria-label="Main navigation">
+      <a href="/calculators/">Calculators</a>
+      <a href="/about/">About</a>
+    </nav>
   </div>
 </header>
-
 <main>
-
   <section class="intro">
     <h1>Gravel Calculator</h1>
-    <p>
-      Quickly estimate how much gravel you need for a driveway,
-      garden path, patio or other project.
-    </p>
+    <p>Quickly estimate how much gravel you need for a driveway, garden path, patio or other project.</p>
   </section>
 
-  <section class="calculator">
-
+  <section class="calculator" aria-label="Gravel calculator">
     <div class="unit-toggle">
       <button id="metricBtn" class="active" type="button">Metric</button>
       <button id="imperialBtn" type="button">Imperial</button>
     </div>
-
     <div class="field-grid">
-
-      <div class="field">
-        <label for="length">Length</label>
-        <div class="input-with-unit">
-          <input id="length" type="number" min="0" step="any" placeholder="10">
-          <select id="lengthUnit">
-            <option value="m">m</option>
-            <option value="cm">cm</option>
-          </select>
-        </div>
-      </div>
-
-      <div class="field">
-        <label for="width">Width</label>
-        <div class="input-with-unit">
-          <input id="width" type="number" min="0" step="any" placeholder="4">
-          <select id="widthUnit">
-            <option value="m">m</option>
-            <option value="cm">cm</option>
-          </select>
-        </div>
-      </div>
-
-      <div class="field">
-        <label for="depth">Gravel depth</label>
-        <div class="input-with-unit">
-          <input id="depth" type="number" min="0" step="any" placeholder="5">
-          <select id="depthUnit">
-            <option value="cm">cm</option>
-            <option value="m">m</option>
-          </select>
-        </div>
-      </div>
-
-      <div class="field">
-        <label for="density">Gravel type</label>
-        <select id="density">
-          <option value="1.70">General gravel</option>
-          <option value="1.60">Pea gravel</option>
-          <option value="1.75">Crushed stone</option>
-          <option value="1.65">River rock</option>
-        </select>
-      </div>
-
-      <div class="field full">
-        <label for="price">
-          Price per <span id="priceUnitLabel">tonne</span>
-          <span style="font-weight:400;color:#65716b">(optional)</span>
-        </label>
-        <input
-          id="price"
-          type="number"
-          min="0"
-          step="any"
-          placeholder="Leave blank"
-        >
-      </div>
-
+      <div class="field"><label for="length">Length</label><div class="input-with-unit"><input id="length" type="number" min="0" step="any" placeholder="10"><select id="lengthUnit"><option value="m">m</option><option value="cm">cm</option></select></div></div>
+      <div class="field"><label for="width">Width</label><div class="input-with-unit"><input id="width" type="number" min="0" step="any" placeholder="4"><select id="widthUnit"><option value="m">m</option><option value="cm">cm</option></select></div></div>
+      <div class="field"><label for="depth">Gravel depth</label><div class="input-with-unit"><input id="depth" type="number" min="0" step="any" placeholder="5"><select id="depthUnit"><option value="cm">cm</option><option value="m">m</option></select></div></div>
+      <div class="field"><label for="density">Gravel type</label><select id="density"><option value="1.70">General gravel</option><option value="1.60">Pea gravel</option><option value="1.75">Crushed stone</option><option value="1.65">River rock</option></select></div>
+      <div class="field full"><label for="price">Price per <span id="priceUnitLabel">tonne</span> <span style="font-weight:400;color:#65716b">(optional)</span></label><input id="price" type="number" min="0" step="any" placeholder="Leave blank"></div>
     </div>
-
-    <label class="check-row">
-      <input id="extra" type="checkbox" checked>
-      Include 10% extra for settling, spillage and uneven ground
-    </label>
-
-    <button class="calculate" id="calculateBtn" type="button">
-      Calculate gravel
-    </button>
-
-    <div class="error" id="error">
-      Please enter a length, width and depth greater than zero.
-    </div>
-
+    <label class="check-row"><input id="extra" type="checkbox" checked>Include 10% extra for settling, spillage and uneven ground</label>
+    <button class="calculate" id="calculateBtn" type="button">Calculate gravel</button>
+    <div class="error" id="error">Please enter a length, width and depth greater than zero.</div>
     <div class="result" id="result" aria-live="polite">
-
-      <div class="result-label">
-        Estimated gravel needed
-      </div>
-
+      <div class="result-label">Estimated gravel needed</div>
       <div class="result-main" id="mainResult"></div>
-
       <div class="result-secondary" id="secondaryResult"></div>
-
       <div class="result-tertiary" id="tertiaryResult"></div>
-
       <div class="result-details">
-
-        <div class="detail">
-          <span>Area</span>
-          <strong id="areaResult"></strong>
-        </div>
-
-        <div class="detail">
-          <span>Volume</span>
-          <strong id="volumeResult"></strong>
-        </div>
-
-        <div class="detail">
-          <span>Estimated weight</span>
-          <strong id="weightResult"></strong>
-        </div>
-
-        <div class="detail" id="extraRow">
-          <span>10% extra included</span>
-          <strong>Yes</strong>
-        </div>
-
-        <div class="detail" id="costRow" style="display:none">
-          <span>Estimated cost</span>
-          <strong id="costResult"></strong>
-        </div>
-
+        <div class="detail"><span>Area</span><strong id="areaResult"></strong></div>
+        <div class="detail"><span>Volume</span><strong id="volumeResult"></strong></div>
+        <div class="detail"><span>Estimated weight</span><strong id="weightResult"></strong></div>
+        <div class="detail" id="extraRow"><span>10% extra included</span><strong>Yes</strong></div>
+        <div class="detail" id="costRow" style="display:none"><span>Estimated cost</span><strong id="costResult"></strong></div>
       </div>
-
     </div>
-
-    <div class="note">
-      Gravel weight varies by material, moisture and compaction.
-      This calculator provides an estimate for planning purposes.
-    </div>
-
+    <div class="note">Gravel weight varies by material, moisture and compaction. This calculator provides an estimate for planning purposes.</div>
   </section>
 
-  <article class="content">
+  <div class="related">
+    <h2>Other calculators</h2>
+    <div class="related-links"><a href="/concrete-calculator/">Concrete Calculator</a><a href="/calculators/">View all calculators →</a></div>
+  </div>
 
+  <article class="content">
     <section>
       <h2>How much gravel do I need?</h2>
-
-      <p>
-        The amount of gravel you need depends on three main measurements:
-        the length of the area, its width and the depth of the gravel layer.
-        AmountHub's gravel calculator uses these measurements to estimate the
-        total volume and approximate weight of gravel required for your project.
-      </p>
-
-      <p>
-        Enter the dimensions of your driveway, garden path, patio or landscaping
-        area and choose either metric or imperial units. The calculator converts
-        the measurements automatically and estimates the result in cubic metres
-        and tonnes, or cubic yards and US tons.
-      </p>
-
-      <p>
-        For smaller projects, the result is also displayed in kilograms or
-        pounds so that you do not have to convert a small fraction of a tonne
-        yourself.
-      </p>
+      <p>The amount of gravel you need depends on three main measurements: the length of the area, its width and the depth of the gravel layer. AmountHub's gravel calculator uses these measurements to estimate the total volume and approximate weight of gravel required for your project.</p>
+      <p>Enter the dimensions of your driveway, garden path, patio or landscaping area and choose either metric or imperial units. The calculator converts the measurements automatically and estimates the result in cubic metres and tonnes, or cubic yards and US tons.</p>
+      <p>For smaller projects, the result is also displayed in kilograms or pounds so that you do not have to convert a small fraction of a tonne yourself.</p>
     </section>
-
     <section>
       <h2>How the gravel calculator works</h2>
-
-      <p>
-        Gravel quantity is calculated by first finding the volume of the area.
-        For a rectangular area, the basic calculation is:
-      </p>
-
-      <p>
-        <strong>Length × Width × Depth = Gravel Volume</strong>
-      </p>
-
-      <p>
-        The volume is then multiplied by an estimated density for the selected
-        gravel type. Different materials have different densities, so pea
-        gravel, crushed stone and river rock may produce slightly different
-        weight estimates even when the volume is the same.
-      </p>
-
-      <p>
-        By default, the calculator adds 10% extra material. This allowance can
-        help account for uneven ground, settling, compaction and small losses
-        during delivery or installation. You can disable the extra allowance
-        if you prefer to calculate the exact theoretical quantity.
-      </p>
+      <p>Gravel quantity is calculated by first finding the volume of the area. For a rectangular area, the basic calculation is:</p>
+      <p><strong>Length × Width × Depth = Gravel Volume</strong></p>
+      <p>The volume is then multiplied by an estimated density for the selected gravel type. Different materials have different densities, so pea gravel, crushed stone and river rock may produce slightly different weight estimates even when the volume is the same.</p>
+      <p>By default, the calculator adds 10% extra material to help account for uneven ground, settling, compaction and small losses during delivery or installation.</p>
     </section>
-
     <section>
       <h2>Gravel calculation example</h2>
-
       <div class="example-box">
-        <p>
-          Imagine you are creating a garden path that is
-          <strong>10 metres long</strong>,
-          <strong>2 metres wide</strong> and
-          <strong>5 centimetres deep</strong>.
-        </p>
-
-        <p>
-          The area is 20 m² and the gravel volume before adding extra material
-          is approximately 1 m³.
-        </p>
-
-        <p>
-          Using a general gravel density of roughly 1.7 tonnes per cubic metre,
-          the project would require around 1.7 tonnes of gravel before any
-          additional allowance.
-        </p>
-
-        <p>
-          With a 10% allowance included, the estimated requirement becomes
-          approximately <strong>1.87 tonnes</strong>.
-        </p>
+        <p>Imagine you are creating a garden path that is <strong>10 metres long</strong>, <strong>2 metres wide</strong> and <strong>5 centimetres deep</strong>.</p>
+        <p>The area is 20 m² and the gravel volume before adding extra material is approximately 1 m³.</p>
+        <p>Using a general gravel density of roughly 1.7 tonnes per cubic metre, the project would require around 1.7 tonnes of gravel before any additional allowance.</p>
+        <p>With a 10% allowance included, the estimated requirement becomes approximately <strong>1.87 tonnes</strong>.</p>
       </div>
     </section>
-
     <section>
       <h2>How deep should gravel be?</h2>
-
-      <p>
-        The correct gravel depth depends on how the area will be used.
-        Decorative gravel normally requires a much shallower layer than a
-        driveway or structural base.
-      </p>
-
-      <table class="depth-table">
-        <thead>
-          <tr>
-            <th>Project</th>
-            <th>Typical gravel depth</th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr>
-            <td>Decorative garden gravel</td>
-            <td>3–5 cm</td>
-          </tr>
-          <tr>
-            <td>Garden path</td>
-            <td>About 5 cm</td>
-          </tr>
-          <tr>
-            <td>Patio or seating area</td>
-            <td>About 5–8 cm</td>
-          </tr>
-          <tr>
-            <td>Driveway surface layer</td>
-            <td>About 5–10 cm</td>
-          </tr>
-        </tbody>
-      </table>
-
-      <p>
-        These figures are general planning estimates. Projects that carry
-        vehicles or require drainage and structural support may need additional
-        compacted base layers underneath the visible gravel.
-      </p>
+      <p>The correct gravel depth depends on how the area will be used. Decorative gravel normally requires a much shallower layer than a driveway or structural base.</p>
+      <table class="depth-table"><thead><tr><th>Project</th><th>Typical gravel depth</th></tr></thead><tbody><tr><td>Decorative garden gravel</td><td>3–5 cm</td></tr><tr><td>Garden path</td><td>About 5 cm</td></tr><tr><td>Patio or seating area</td><td>About 5–8 cm</td></tr><tr><td>Driveway surface layer</td><td>About 5–10 cm</td></tr></tbody></table>
+      <p>These figures are general planning estimates. Projects that carry vehicles or require drainage and structural support may need additional compacted base layers underneath the visible gravel.</p>
     </section>
-
     <section>
       <h2>How much does a cubic metre of gravel weigh?</h2>
-
-      <p>
-        Gravel does not have one exact weight because the density changes
-        depending on stone size, material, moisture and how tightly it is
-        compacted.
-      </p>
-
-      <p>
-        As a general estimate, many common gravel types weigh around
-        <strong>1.6 to 1.8 tonnes per cubic metre</strong>. Our calculator uses
-        a different estimated density depending on the gravel type you select.
-      </p>
-
-      <ul>
-        <li>General gravel: approximately 1.70 tonnes per m³</li>
-        <li>Pea gravel: approximately 1.60 tonnes per m³</li>
-        <li>Crushed stone: approximately 1.75 tonnes per m³</li>
-        <li>River rock: approximately 1.65 tonnes per m³</li>
-      </ul>
-
-      <p>
-        If your supplier provides a specific density for the product you plan
-        to purchase, their figure should always be considered more accurate for
-        that particular material.
-      </p>
+      <p>Gravel does not have one exact weight because density changes depending on stone size, material, moisture and how tightly it is compacted.</p>
+      <p>As a general estimate, many common gravel types weigh around <strong>1.6 to 1.8 tonnes per cubic metre</strong>.</p>
+      <ul><li>General gravel: approximately 1.70 tonnes per m³</li><li>Pea gravel: approximately 1.60 tonnes per m³</li><li>Crushed stone: approximately 1.75 tonnes per m³</li><li>River rock: approximately 1.65 tonnes per m³</li></ul>
+      <p>If your supplier provides a specific density for the product you plan to purchase, their figure should be considered more accurate for that particular material.</p>
     </section>
-
     <section>
       <h2>Should I order extra gravel?</h2>
-
-      <p>
-        Ordering slightly more gravel than the mathematical minimum can be
-        useful. Ground is rarely perfectly level, measurements may not be
-        exact, and gravel can settle or compact after installation.
-      </p>
-
-      <p>
-        A 10% allowance is a simple general estimate, which is why it is
-        enabled by default in the calculator. For a very precisely prepared
-        area you may need less extra material, while irregular or sloped ground
-        could require more.
-      </p>
+      <p>Ordering slightly more gravel than the mathematical minimum can be useful. Ground is rarely perfectly level, measurements may not be exact, and gravel can settle or compact after installation.</p>
+      <p>A 10% allowance is a simple general estimate, which is why it is enabled by default in the calculator.</p>
     </section>
-
     <section>
       <h2>Frequently asked questions</h2>
-
-      <div class="faq-item">
-        <h3>Can I use this calculator for a driveway?</h3>
-        <p>
-          Yes. Enter the driveway length, width and planned gravel depth.
-          Remember that driveways may also require compacted foundation layers
-          underneath the final gravel surface.
-        </p>
-      </div>
-
-      <div class="faq-item">
-        <h3>Can I calculate gravel in centimetres?</h3>
-        <p>
-          Yes. Metric length and width measurements can be entered in metres or
-          centimetres, while gravel depth can also be entered in centimetres.
-        </p>
-      </div>
-
-      <div class="faq-item">
-        <h3>Does the calculator support feet and inches?</h3>
-        <p>
-          Yes. Switch to Imperial to enter measurements in feet or inches.
-          Results are displayed in cubic yards, US tons and pounds.
-        </p>
-      </div>
-
-      <div class="faq-item">
-        <h3>Why does gravel weight vary?</h3>
-        <p>
-          Different stone types have different densities. Moisture, stone size
-          and compaction can also change the actual weight of a given volume of
-          gravel.
-        </p>
-      </div>
-
-      <div class="faq-item">
-        <h3>Can I estimate the cost of gravel?</h3>
-        <p>
-          Yes. Enter the price per tonne or US ton in the optional price field
-          and the calculator will estimate the material cost based on the
-          calculated weight.
-        </p>
-      </div>
-
+      <div class="faq-item"><h3>Can I use this calculator for a driveway?</h3><p>Yes. Enter the driveway length, width and planned gravel depth. Remember that driveways may also require compacted foundation layers underneath the final gravel surface.</p></div>
+      <div class="faq-item"><h3>Can I calculate gravel in centimetres?</h3><p>Yes. Metric length and width measurements can be entered in metres or centimetres, while gravel depth can also be entered in centimetres.</p></div>
+      <div class="faq-item"><h3>Does the calculator support feet and inches?</h3><p>Yes. Switch to Imperial to enter measurements in feet or inches. Results are displayed in cubic yards, US tons and pounds.</p></div>
+      <div class="faq-item"><h3>Why does gravel weight vary?</h3><p>Different stone types have different densities. Moisture, stone size and compaction can also change the actual weight of a given volume of gravel.</p></div>
+      <div class="faq-item"><h3>Can I estimate the cost of gravel?</h3><p>Yes. Enter the price per tonne or US ton in the optional price field and the calculator will estimate the material cost based on the calculated weight.</p></div>
     </section>
-
   </article>
-
 </main>
-
 <footer>
-  © AmountHub · <a href="/privacy">Privacy Policy</a>
+  <div class="footer-links"><a href="/privacy">Privacy Policy</a><a href="/about/">About</a><a href="/calculators/">Calculators</a></div>
+  <div>© AmountHub</div>
 </footer>
-
-<script>
-  const metricBtn = document.getElementById("metricBtn");
-  const imperialBtn = document.getElementById("imperialBtn");
-
-  const lengthInput = document.getElementById("length");
-  const widthInput = document.getElementById("width");
-  const depthInput = document.getElementById("depth");
-
-  const lengthUnitSelect = document.getElementById("lengthUnit");
-  const widthUnitSelect = document.getElementById("widthUnit");
-  const depthUnitSelect = document.getElementById("depthUnit");
-
-  const densityInput = document.getElementById("density");
-  const priceInput = document.getElementById("price");
-  const extraInput = document.getElementById("extra");
-
-  const priceUnitLabel = document.getElementById("priceUnitLabel");
-
-  const result = document.getElementById("result");
-  const error = document.getElementById("error");
-
-  let system = "metric";
-
-  metricBtn.addEventListener("click", function () {
-    setSystem("metric");
-  });
-
-  imperialBtn.addEventListener("click", function () {
-    setSystem("imperial");
-  });
-
-  function setSystem(newSystem) {
-    system = newSystem;
-
-    metricBtn.classList.toggle("active", system === "metric");
-    imperialBtn.classList.toggle("active", system === "imperial");
-
-    if (system === "metric") {
-      lengthUnitSelect.innerHTML =
-        '<option value="m">m</option>' +
-        '<option value="cm">cm</option>';
-
-      widthUnitSelect.innerHTML =
-        '<option value="m">m</option>' +
-        '<option value="cm">cm</option>';
-
-      depthUnitSelect.innerHTML =
-        '<option value="cm">cm</option>' +
-        '<option value="m">m</option>';
-
-      lengthInput.placeholder = "10";
-      widthInput.placeholder = "4";
-      depthInput.placeholder = "5";
-
-      priceUnitLabel.textContent = "tonne";
-    } else {
-      lengthUnitSelect.innerHTML =
-        '<option value="ft">ft</option>' +
-        '<option value="in">in</option>';
-
-      widthUnitSelect.innerHTML =
-        '<option value="ft">ft</option>' +
-        '<option value="in">in</option>';
-
-      depthUnitSelect.innerHTML =
-        '<option value="in">in</option>' +
-        '<option value="ft">ft</option>';
-
-      lengthInput.placeholder = "30";
-      widthInput.placeholder = "12";
-      depthInput.placeholder = "2";
-
-      priceUnitLabel.textContent = "ton";
-    }
-
-    result.style.display = "none";
-    error.style.display = "none";
-  }
-
-  function metricToMeters(value, unit) {
-    if (unit === "cm") {
-      return value / 100;
-    }
-
-    return value;
-  }
-
-  function imperialToMeters(value, unit) {
-    if (unit === "in") {
-      return value * 0.0254;
-    }
-
-    return value * 0.3048;
-  }
-
-  document
-    .getElementById("calculateBtn")
-    .addEventListener("click", calculate);
-
-  function calculate() {
-    const length = parseFloat(lengthInput.value);
-    const width = parseFloat(widthInput.value);
-    const depth = parseFloat(depthInput.value);
-
-    const density = parseFloat(densityInput.value);
-    const price = parseFloat(priceInput.value);
-
-    if (
-      !Number.isFinite(length) ||
-      !Number.isFinite(width) ||
-      !Number.isFinite(depth) ||
-      length <= 0 ||
-      width <= 0 ||
-      depth <= 0
-    ) {
-      error.style.display = "block";
-      result.style.display = "none";
-      return;
-    }
-
-    error.style.display = "none";
-
-    let lengthM;
-    let widthM;
-    let depthM;
-
-    if (system === "metric") {
-      lengthM = metricToMeters(
-        length,
-        lengthUnitSelect.value
-      );
-
-      widthM = metricToMeters(
-        width,
-        widthUnitSelect.value
-      );
-
-      depthM = metricToMeters(
-        depth,
-        depthUnitSelect.value
-      );
-    } else {
-      lengthM = imperialToMeters(
-        length,
-        lengthUnitSelect.value
-      );
-
-      widthM = imperialToMeters(
-        width,
-        widthUnitSelect.value
-      );
-
-      depthM = imperialToMeters(
-        depth,
-        depthUnitSelect.value
-      );
-    }
-
-    const areaM2 = lengthM * widthM;
-
-    let volumeM3 = areaM2 * depthM;
-
-    if (extraInput.checked) {
-      volumeM3 = volumeM3 * 1.10;
-    }
-
-    const tonnes = volumeM3 * density;
-    const kilograms = tonnes * 1000;
-
-    const extraRow = document.getElementById("extraRow");
-    const costRow = document.getElementById("costRow");
-
-    extraRow.style.display =
-      extraInput.checked ? "flex" : "none";
-
-    if (system === "metric") {
-
-      if (tonnes < 0.1) {
-        document.getElementById("mainResult").textContent =
-          Math.round(kilograms).toLocaleString() + " kg";
-
-        document.getElementById("secondaryResult").textContent =
-          tonnes.toFixed(3) + " tonnes";
-      } else {
-        document.getElementById("mainResult").textContent =
-          tonnes.toFixed(2) + " tonnes";
-
-        document.getElementById("secondaryResult").textContent =
-          "≈ " +
-          Math.round(kilograms).toLocaleString() +
-          " kg";
-      }
-
-      document.getElementById("tertiaryResult").textContent =
-        volumeM3.toFixed(2) + " m³";
-
-      document.getElementById("areaResult").textContent =
-        areaM2.toFixed(2) + " m²";
-
-      document.getElementById("volumeResult").textContent =
-        volumeM3.toFixed(2) + " m³";
-
-      document.getElementById("weightResult").textContent =
-        tonnes.toFixed(3) +
-        " tonnes (" +
-        Math.round(kilograms).toLocaleString() +
-        " kg)";
-
-      if (Number.isFinite(price) && price >= 0) {
-        document.getElementById("costResult").textContent =
-          (tonnes * price).toFixed(2);
-
-        costRow.style.display = "flex";
-      } else {
-        costRow.style.display = "none";
-      }
-
-    } else {
-
-      const areaFt2 = areaM2 * 10.7639104167;
-      const cubicYards = volumeM3 * 1.3079506193;
-
-      const usTons = kilograms / 907.18474;
-      const pounds = kilograms * 2.2046226218;
-
-      if (usTons < 0.1) {
-        document.getElementById("mainResult").textContent =
-          Math.round(pounds).toLocaleString() + " lb";
-
-        document.getElementById("secondaryResult").textContent =
-          usTons.toFixed(3) + " tons";
-      } else {
-        document.getElementById("mainResult").textContent =
-          usTons.toFixed(2) + " tons";
-
-        document.getElementById("secondaryResult").textContent =
-          "≈ " +
-          Math.round(pounds).toLocaleString() +
-          " lb";
-      }
-
-      document.getElementById("tertiaryResult").textContent =
-        cubicYards.toFixed(2) + " yd³";
-
-      document.getElementById("areaResult").textContent =
-        areaFt2.toFixed(2) + " ft²";
-
-      document.getElementById("volumeResult").textContent =
-        cubicYards.toFixed(2) + " yd³";
-
-      document.getElementById("weightResult").textContent =
-        usTons.toFixed(3) +
-        " tons (" +
-        Math.round(pounds).toLocaleString() +
-        " lb)";
-
-      if (Number.isFinite(price) && price >= 0) {
-        document.getElementById("costResult").textContent =
-          (usTons * price).toFixed(2);
-
-        costRow.style.display = "flex";
-      } else {
-        costRow.style.display = "none";
-      }
-    }
-
-    result.style.display = "block";
-
-    result.scrollIntoView({
-      behavior: "smooth",
-      block: "nearest"
-    });
-  }
-</script>
-
+<script src="/assets/gravel.js"></script>
 </body>
 </html>
