@@ -1,18 +1,18 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
-  <url>
-    <loc>https://amounthub.com/</loc>
-  </url>
-  <url>
-    <loc>https://amounthub.com/calculators/</loc>
-  </url>
-  <url>
-    <loc>https://amounthub.com/concrete-calculator/</loc>
-  </url>
-  <url>
-    <loc>https://amounthub.com/about/</loc>
-  </url>
-  <url>
-    <loc>https://amounthub.com/privacy.html</loc>
-  </url>
+  <url><loc>https://amounthub.com/</loc></url>
+  <url><loc>https://amounthub.com/calculators/</loc></url>
+  <url><loc>https://amounthub.com/concrete-calculator/</loc></url>
+  <url><loc>https://amounthub.com/sand-calculator/</loc></url>
+  <url><loc>https://amounthub.com/soil-calculator/</loc></url>
+  <url><loc>https://amounthub.com/mulch-calculator/</loc></url>
+  <url><loc>https://amounthub.com/asphalt-calculator/</loc></url>
+  <url><loc>https://amounthub.com/paver-calculator/</loc></url>
+  <url><loc>https://amounthub.com/paint-calculator/</loc></url>
+  <url><loc>https://amounthub.com/tile-calculator/</loc></url>
+  <url><loc>https://amounthub.com/flooring-calculator/</loc></url>
+  <url><loc>https://amounthub.com/drywall-calculator/</loc></url>
+  <url><loc>https://amounthub.com/brick-calculator/</loc></url>
+  <url><loc>https://amounthub.com/about/</loc></url>
+  <url><loc>https://amounthub.com/privacy.html</loc></url>
 </urlset>
