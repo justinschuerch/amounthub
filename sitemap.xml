@@ -2,6 +2,7 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url><loc>https://amounthub.com/</loc></url>
   <url><loc>https://amounthub.com/calculators/</loc></url>
+  <url><loc>https://amounthub.com/gravel-calculator/</loc></url>
   <url><loc>https://amounthub.com/concrete-calculator/</loc></url>
   <url><loc>https://amounthub.com/sand-calculator/</loc></url>
   <url><loc>https://amounthub.com/soil-calculator/</loc></url>
@@ -23,4 +24,5 @@
   <url><loc>https://amounthub.com/methodology/</loc></url>
   <url><loc>https://amounthub.com/contact/</loc></url>
   <url><loc>https://amounthub.com/privacy.html</loc></url>
+  <url><loc>https://amounthub.com/terms/</loc></url>
 </urlset>

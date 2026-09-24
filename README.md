@@ -1,19 +1,15 @@
 # AmountHub
 
-AmountHub is a simple collection of useful calculators for everyday projects.
+Static material and project calculators hosted on GitHub Pages at https://amounthub.com/. The homepage introduces the tools. Gravel lives at `/gravel-calculator/`; the existing topsoil tool remains at `/soil-calculator/` to preserve its established URL.
 
-The first tool is a gravel calculator that helps estimate how much gravel is needed based on area, depth, and material density.
+## Run locally
 
-## Goals
+`python3 -m http.server 8000` from this directory, then open http://localhost:8000/. No build step or dependencies are required.
 
-- Simple and fast
-- Mobile-friendly
-- No sign-up required
-- Metric and imperial support
-- Free to use
+## Publishing
 
-More calculators may be added over time.
+GitHub Pages serves the `main` branch. Keep `CNAME`, `ads.txt`, `robots.txt`, the AdSense script and canonical URLs intact. Update `sitemap.xml` when adding a public page. Calculator inputs run in the browser.
 
-## Tech
+## Checking changes
 
-Built with plain HTML, CSS, and JavaScript and hosted with GitHub Pages.
+Run `python3 tests/site_check.py` for internal links, canonical and sitemap checks. Run `node tests/calculators.test.mjs` for numerical cases and invalid inputs if Chromium is available locally.
