@@ -2,7 +2,7 @@
 window.AmountHubUnits = (() => {
   const $ = id => document.getElementById(id);
   const metres = (value, unit) => unit === 'cm' ? value / 100 : unit === 'in' ? value * 0.0254 : unit === 'ft' ? value * 0.3048 : value;
-  const number = value => Number(Number(value).toPrecision(10)).toString();
+  const number = value => { const places = Math.abs(value) >= 100 ? 2 : Math.abs(value) >= 1 ? 4 : 6; return Number(value.toFixed(places)).toString(); };
   const densityMetric = (value, system) => system === 'imperial' ? value * 0.0005932764213 : value;
   const densityForDisplay = (value, system) => system === 'imperial' ? value / 0.0005932764213 : value;
 
