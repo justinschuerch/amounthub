@@ -31,26 +31,28 @@
 
   <section class="calculator" aria-label="Gravel calculator">
     <div class="unit-toggle">
-      <button id="metricBtn" class="active" type="button">Metric</button>
-      <button id="imperialBtn" type="button">Imperial</button>
+      <button id="metricBtn" class="active" aria-pressed="true" type="button">Metric</button>
+      <button id="imperialBtn" aria-pressed="false" type="button">Imperial</button>
     </div>
+<p class="unit-help">Switching Metric and Imperial converts measurements you have entered. You can also choose the unit beside each dimension.</p>
     <div class="field-grid">
       <div class="field"><label for="length">Length</label><div class="input-with-unit"><input id="length" type="number" min="0" step="any" placeholder="10"><select id="lengthUnit"><option value="m">m</option><option value="cm">cm</option></select></div></div>
       <div class="field"><label for="width">Width</label><div class="input-with-unit"><input id="width" type="number" min="0" step="any" placeholder="4"><select id="widthUnit"><option value="m">m</option><option value="cm">cm</option></select></div></div>
       <div class="field"><label for="depth">Gravel depth</label><div class="input-with-unit"><input id="depth" type="number" min="0" step="any" placeholder="5"><select id="depthUnit"><option value="cm">cm</option><option value="m">m</option></select></div></div>
-      <div class="field"><label for="density">Gravel type</label><select id="density"><option value="1.70">General gravel</option><option value="1.60">Pea gravel</option><option value="1.75">Crushed stone</option><option value="1.65">River rock</option></select></div>
+      <div class="field"><label for="density">Gravel type</label><select id="density"><option value="1.70">General gravel</option><option value="1.60">Pea gravel</option><option value="1.75">Crushed stone</option><option value="1.65">River rock</option><option value="custom">Use supplier density</option></select></div><div class="field" id="customDensityField" hidden><label for="customDensity" id="customDensityLabel">Supplier density (tonnes/m³)</label><input id="customDensity" type="number" min="0.01" step="any" value="1.70"><small class="field-hint">Use the bulk density stated by your supplier for the exact product.</small></div>
       <div class="field full"><label for="price">Price per <span id="priceUnitLabel">tonne</span> <span style="font-weight:400;color:#65716b">(optional)</span></label><input id="price" type="number" min="0" step="any" placeholder="Leave blank"></div>
     </div>
+    <section class="extra-sections" aria-labelledby="sectionsHeading"><h2 id="sectionsHeading">More areas to cover?</h2><p>Add separate rectangles for a wider landing, an L-shaped path or another bed. All sections use the same gravel depth, type and units selected above.</p><div id="gravelSections"></div><div class="sections-status" id="sectionCount">No additional sections</div><button class="add-section" id="addGravelSection" type="button">+ Add a section</button></section>
     <label class="check-row"><input id="extra" type="checkbox" checked>Include 10% extra for settling, spillage and uneven ground</label>
     <button class="calculate" id="calculateBtn" type="button">Calculate gravel</button>
-    <div class="error" id="error">Please enter a length, width and depth greater than zero.</div>
+    <div class="error" id="error">Enter positive dimensions and a valid density for every section.</div>
     <div class="result" id="result" aria-live="polite">
       <div class="result-label">Estimated gravel needed</div>
       <div class="result-main" id="mainResult"></div>
       <div class="result-secondary" id="secondaryResult"></div>
       <div class="result-tertiary" id="tertiaryResult"></div>
       <div class="result-details">
-        <div class="detail"><span>Area</span><strong id="areaResult"></strong></div>
+        <div class="detail"><span>Total area</span><strong id="areaResult"></strong></div><div class="detail" id="sectionsResultRow" hidden><span>Sections measured</span><strong id="sectionsResult"></strong></div>
         <div class="detail"><span>Volume</span><strong id="volumeResult"></strong></div>
         <div class="detail"><span>Estimated weight</span><strong id="weightResult"></strong></div>
         <div class="detail" id="extraRow"><span>10% extra included</span><strong>Yes</strong></div>
@@ -141,6 +143,7 @@
       <ul><li>General gravel: approximately 1.70 tonnes per m³</li><li>Pea gravel: approximately 1.60 tonnes per m³</li><li>Crushed stone: approximately 1.75 tonnes per m³</li><li>River rock: approximately 1.65 tonnes per m³</li></ul>
       <p>If your supplier provides a specific density for the product you plan to purchase, their figure should be considered more accurate for that particular material.</p>
     </section>
+    <section><h2>When the supplier gives you a density</h2><p>Select “Use supplier density” and enter the quoted bulk density for the exact stone. For the 8 m × 1.2 m path above, 0.528 m³ including the 10% allowance weighs about 0.90 tonnes at the preset 1.70 t/m³. At a supplier value of 1.80 t/m³ it weighs about 0.95 tonnes. The volume has not changed; only the estimated weight and bag or bulk order have. In Imperial mode the field accepts lb/yd³.</p></section>
     <section>
       <h2>Should I order extra gravel?</h2>
       <p>Ordering slightly more gravel than the mathematical minimum can be useful. Ground is rarely perfectly level, measurements may not be exact, and gravel can settle or compact after installation.</p>
@@ -159,7 +162,7 @@
     </section>
 
     <section>
-      <h2>Before you order gravel</h2>
+      <h2>Measure an L-shaped project</h2><p>Use the first length and width for the main path, then add a separate section for each wider or angled portion you can measure as a rectangle. For example, an 8 m × 1.2 m path plus a 2 m × 1.5 m landing has a combined area of 12.6 m². At 5 cm deep, that is 0.63 m³ before allowance. With 10% extra and general gravel at 1.70 t/m³, the estimate is about 1.18 tonnes. Overlapping sections should be measured only once.</p><h2>Before you order gravel</h2>
       <p>A calculator is most useful when the measurements and product information are realistic. Before ordering, check the finished dimensions one more time, confirm the planned depth, and ask the supplier whether the gravel density or coverage differs from the general estimate used here.</p>
       <ul>
         <li>Measure irregular areas in smaller sections rather than forcing everything into one rectangle.</li>
@@ -181,6 +184,8 @@
   </article>
 </main>
 <footer><div class="footer-links"><a href="/calculators/">Calculators</a><a href="/about/">About</a><a href="/methodology/">Methodology</a><a href="/contact/">Contact</a><a href="/privacy.html">Privacy Policy</a><a href="/terms/">Terms</a></div><div>© AmountHub</div></footer>
+<script src="/assets/units.js"></script>
+<script src="/assets/gravel-sections.js"></script>
 <script src="/assets/gravel.js"></script>
 <script src="/assets/toolkit.js"></script>
 </body>
